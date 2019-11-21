@@ -1,7 +1,41 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+/*
+	defer 在一个函数中的个数不限，若有多个defer,先顺序放到栈里，函数return前再从栈里面逐个取出执行（先遇到的后执行）
+	下面这段代码的输出为：
+
+	start to echonum
+	4
+	3
+	2
+	1
+	0
+	end echonum
+	c
+	b
+	a
+
+*/
+func echonum()  {
+	for i := 0; i < 5; i++ {
+		defer func(n int) {
+			fmt.Println(n)
+		}(i)
+	}
+}
+
+func echotest(i string)  {
+	fmt.Println(i)
+}
 
 func main()  {
-	fmt.Println("xfq 111")
+	defer fmt.Println("a")
+	defer echotest("b")
+	defer fmt.Println("c")
+	fmt.Println("start to echonum")
+	echonum()
+	fmt.Println("end echonum")
 }
