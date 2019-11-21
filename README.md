@@ -6,3 +6,5 @@
 2.panic-test    panic
 
 3.recover-test  recover
+
+4.io-test
